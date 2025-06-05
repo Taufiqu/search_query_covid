@@ -15,9 +15,9 @@ import spacy
 try:
     nlp = spacy.load("en_core_web_sm")
 except OSError:
-    # Jika model belum ada, tampilkan pesan error yang jelas
-    raise RuntimeError("Model 'en_core_web_sm' tidak ditemukan. Pastikan sudah ditambahkan ke requirements.txt.")
-stop_words = set(stopwords.words('english'))
+    import subprocess
+    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
+    nlp = spacy.load("en_core_web_sm")
 
 @st.cache_data
 def load_data():
