@@ -10,8 +10,13 @@ from sentence_transformers import SentenceTransformer
 
 # Download resources
 nltk.download('stopwords')
-import en_core_web_sm
-nlp = en_core_web_sm.load()
+import spacy
+
+try:
+    nlp = spacy.load("en_core_web_sm")
+except OSError:
+    # Jika model belum ada, tampilkan pesan error yang jelas
+    raise RuntimeError("Model 'en_core_web_sm' tidak ditemukan. Pastikan sudah ditambahkan ke requirements.txt.")
 stop_words = set(stopwords.words('english'))
 
 @st.cache_data
