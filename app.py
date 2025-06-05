@@ -10,7 +10,8 @@ from sentence_transformers import SentenceTransformer
 
 # Download resources
 nltk.download('stopwords')
-nlp = spacy.load("en_core_web_sm")
+import en_core_web_sm
+nlp = en_core_web_sm.load()
 stop_words = set(stopwords.words('english'))
 
 @st.cache_data
