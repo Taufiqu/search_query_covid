@@ -11,12 +11,13 @@ from sentence_transformers import SentenceTransformer
 # Download resources
 nltk.download('stopwords')
 import spacy
+from spacy.cli import download
 
+# Download hanya jika belum ada
 try:
     nlp = spacy.load("en_core_web_sm")
 except OSError:
-    import subprocess
-    subprocess.run(["python", "-m", "spacy", "download", "en_core_web_sm"])
+    download("en_core_web_sm")
     nlp = spacy.load("en_core_web_sm")
 
 @st.cache_data
